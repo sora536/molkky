@@ -1,0 +1,15 @@
+.html {
+  margin: 1vw;
+}
+.scoreBtn {
+  margin: 0.3vw;
+  height: 8.5svh;
+  width: 30vw;
+  font-size: 30px;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 2px 2px var(--shadow-color);
+}
+.scoreBtn.transparent {
+  display: none;
+}
