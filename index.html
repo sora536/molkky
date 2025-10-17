@@ -7,8 +7,12 @@
     <title>molkky</title>
   </head>
   <body>
-    <h1>team1:　<span id="scoreLeft">0</span></h1>
-    <h1>team2:　<span id="scoreRight">0</span></h1>
+    <h1 id="Left" class="overlay">
+      team1:　<span id="scoreLeft">0</span>　<span id="missLeft"></span>
+    </h1>
+    <h1 id="Right">
+      team2:　<span id="scoreRight">0</span>　<span id="missRight"></span>
+    </h1>
     <button class="scoreBtn" id="1" ontouchend="scoreClick(this.id)">1</button>
     <button class="scoreBtn" id="2" ontouchend="scoreClick(this.id)">2</button>
     <button class="scoreBtn" id="3" ontouchend="scoreClick(this.id)">3</button>
