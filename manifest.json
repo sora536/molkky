@@ -1,5 +1,6 @@
 {
   "name": "molkky",
+  "short_name": "molkky",
   "theme_color": "#fff1ab",
   "background_color": "#fff1ab",
   "display": "standalone",
