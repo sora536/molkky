@@ -6,6 +6,7 @@ let cash = null;
 function scoreClick(id) {
   if (id == "clear") {
     reset();
+    return;
   } else if (id == "delete") {
     if (cash == 0) {
       if (turn % 2 == 1) {
@@ -48,11 +49,13 @@ function update(num) {
     if (miss[0] >= 3) {
       alert("team1 lose");
       reset();
+      return;
     }
     score[0] += Number(num);
     if (score[0] == 50) {
       alert("team1 win");
       reset();
+      return;
     } else if (score[0] > 50) {
       score[0] = 25;
     }
@@ -69,11 +72,13 @@ function update(num) {
     if (miss[1] >= 3) {
       alert("team2 lose");
       reset();
+      return;
     }
     score[1] += Number(num);
     if (score[1] == 50) {
       alert("team2 win");
       reset();
+      return;
     } else if (score[1] > 50) {
       score[1] = 25;
     }
