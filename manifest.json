@@ -1,0 +1,14 @@
+{
+  "name": "molkky",
+  "theme_color": "#fff1ab",
+  "background_color": "#fff1ab",
+  "display": "standalone",
+  "start_url": "index.html",
+  "icons": [
+    {
+      "src": "icon.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    }
+  ]
+}
