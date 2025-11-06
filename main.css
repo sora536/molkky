@@ -12,9 +12,7 @@ h1 {
   border: 1px solid black;
   border-radius: 10px;
 }
-.scoreBtn.transparent {
-  display: none;
-}
+
 .overlay {
   background-color: lightgray;
 }

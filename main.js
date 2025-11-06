@@ -1,104 +1,69 @@
-let score = [0, 0];
-let miss = [0, 0];
-let turn = 0;
-let cash = null;
-
+let score = [];
+//scoreをいじいじ
 function scoreClick(id) {
-  if (id == "clear") {
-    reset();
-    return;
-  } else if (id == "delete") {
-    if (cash == 0) {
-      if (turn % 2 == 1) {
-        miss[0] -= 1;
-        document.getElementById("missLeft").textContent = "✗".repeat(miss[0]);
-      } else {
-        miss[1] -= 1;
-        document.getElementById("missRight").textContent = "✗".repeat(miss[1]);
-      }
-    } else {
-      update(-cash);
-    }
-    turn -= 1;
-    cash = null;
-    document.getElementById("delete").classList.add("transparent");
-    if (turn % 2 == 1) {
-      document.getElementById("Left").classList.remove("overlay");
-      document.getElementById("Right").classList.add("overlay");
-    } else {
-      document.getElementById("Left").classList.add("overlay");
-      document.getElementById("Right").classList.remove("overlay");
-    }
+  if (id == "delete") {
+    score.pop();
+    culcurate();
+  } else if (id == "clear") {
+    score = [];
+    culcurate();
   } else {
-    turn += 1;
-    cash = Number(id);
-    document.getElementById("delete").classList.remove("transparent");
-    update(id);
+    score.push(Number(id));
+    culcurate();
   }
 }
 
-function update(num) {
-  if (turn % 2 == 1) {
-    if (num == 0) {
-      miss[0] += 1;
-      document.getElementById("missLeft").textContent = "✗".repeat(miss[0]);
+//合計を計算
+function culcurate() {
+  let sum1 = 0;
+  let miss1 = 0;
+  for (let i = 0; i < score.length; i = i + 2) {
+    sum1 += score[i];
+    if (score[i] == 0) {
+      miss1++;
     } else {
-      miss[0] = 0;
-      document.getElementById("missLeft").textContent = "";
+      miss1 = 0;
     }
-    if (miss[0] >= 3) {
-      alert("team1 lose");
-      reset();
-      return;
+    if (sum1 > 50) {
+      sum1 = 25;
     }
-    score[0] += Number(num);
-    if (score[0] == 50) {
-      alert("team1 win");
-      reset();
-      return;
-    } else if (score[0] > 50) {
-      score[0] = 25;
-    }
-    document.getElementById("Left").classList.remove("overlay");
-    document.getElementById("Right").classList.add("overlay");
-  } else {
-    if (num == 0) {
-      miss[1] += 1;
-      document.getElementById("missRight").textContent = "✗".repeat(miss[1]);
+  }
+
+  let sum2 = 0;
+  let miss2 = 0;
+  for (let i = 1; i < score.length; i = i + 2) {
+    sum2 += score[i];
+    if (score[i] == 0) {
+      miss2++;
     } else {
-      miss[1] = 0;
-      document.getElementById("missRight").textContent = "";
+      miss2 = 0;
     }
-    if (miss[1] >= 3) {
-      alert("team2 lose");
-      reset();
-      return;
+    if (sum2 > 50) {
+      sum2 = 25;
     }
-    score[1] += Number(num);
-    if (score[1] == 50) {
-      alert("team2 win");
-      reset();
-      return;
-    } else if (score[1] > 50) {
-      score[1] = 25;
-    }
+  }
+  reroad(sum1, sum2, miss1, miss2, score.length);
+}
+//画面の再表示
+function reroad(sum1, sum2, miss1, miss2, turn) {
+  document.getElementById("sum1").textContent = sum1;
+  document.getElementById("sum2").textContent = sum2;
+  document.getElementById("miss1").textContent = "";
+  document.getElementById("miss2").textContent = "";
+  for (let i = 0; i < miss1; i++) {
+    document.getElementById("miss1").textContent += "×";
+  }
+  for (let i = 0; i < miss2; i++) {
+    document.getElementById("miss2").textContent += "×";
+  }
+  if (turn % 2 == 0) {
     document.getElementById("Left").classList.add("overlay");
     document.getElementById("Right").classList.remove("overlay");
+  } else {
+    document.getElementById("Right").classList.add("overlay");
+    document.getElementById("Left").classList.remove("overlay");
   }
-  document.getElementById("scoreLeft").textContent = score[0];
-  document.getElementById("scoreRight").textContent = score[1];
-}
-
-function reset() {
-  score = [0, 0];
-  miss = [0, 0];
-  turn = 0;
-  cash = null;
-  document.getElementById("delete").classList.add("transparent");
-  document.getElementById("Left").classList.add("overlay");
-  document.getElementById("Right").classList.remove("overlay");
-  document.getElementById("scoreLeft").textContent = score[0];
-  document.getElementById("scoreRight").textContent = score[1];
-  document.getElementById("missLeft").textContent = "";
-  document.getElementById("missRight").textContent = "";
+  document.getElementById("turn").textContent = Math.floor(turn / 2 + 1);
+  document.getElementById("mod2").textContent = (Math.floor(turn / 2) % 2) + 1;
+  document.getElementById("mod3").textContent = (Math.floor(turn / 2) % 3) + 1;
 }

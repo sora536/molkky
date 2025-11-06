@@ -10,10 +10,10 @@
   </head>
   <body>
     <h1 id="Left" class="overlay">
-      team1:　<span id="scoreLeft">0</span>　<span id="missLeft"></span>
+      team1:　<span id="sum1">0</span>　<span id="miss1"></span>
     </h1>
     <h1 id="Right">
-      team2:　<span id="scoreRight">0</span>　<span id="missRight"></span>
+      team2:　<span id="sum2">0</span>　<span id="miss2"></span>
     </h1>
     <button class="scoreBtn" id="1" ontouchend="scoreClick(this.id)">1</button>
     <button class="scoreBtn" id="2" ontouchend="scoreClick(this.id)">2</button>
@@ -37,13 +37,11 @@
       clear
     </button>
     <button class="scoreBtn" id="0" ontouchend="scoreClick(this.id)">0</button>
-    <button
-      class="scoreBtn transparent"
-      id="delete"
-      ontouchend="scoreClick(this.id)"
-    >
+    <button class="scoreBtn" id="delete" ontouchend="scoreClick(this.id)">
       delete
     </button>
+    <p>turn:<span id="turn">1</span></p>
+    <p><span id="mod2">1</span>番目(2人) <span id="mod3">1</span>番目(3人)</p>
     <script src="main.js"></script>
   </body>
 </html>
